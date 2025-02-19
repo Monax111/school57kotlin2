@@ -28,7 +28,9 @@ class MyRepository<T : Any>(
             map[properties.name] = properties.get(obj)
         }
 
-        val query = """insert into $tableName (${map.keys.toList().joinToString(", ")}) values(${map.values.toList().joinToString(", ") { if (it is String) "'$it'" else it.toString() }});"""
+        val columns = map.keys.toList().joinToString(", ")
+        val values = map.values.toList().joinToString(", ") { if (it is String) "'$it'" else it.toString() }
+        val query = """insert into $tableName ($columns) values($values);"""
 
 
         connection.createStatement().use { statement ->
@@ -45,11 +47,11 @@ class MyRepository<T : Any>(
         val map = mutableMapOf<String, Any?>()
 
         connection.createStatement().use { statement ->
-            val rs = statement.executeQuery("SELECT * FROM $tableName WHERE id = $id")
+            val data = statement.executeQuery("SELECT * FROM $tableName WHERE id = $id")
 
-            if (rs.next()) {
+            if (data.next()) {
                 T::class.declaredMemberProperties.forEach { properties ->
-                    map[properties.name] = rs.getObject(properties.name)
+                    map[properties.name] = data.getObject(properties.name)
                 }
             } else {
                 error("Запись с id = $id не найдена")
@@ -70,11 +72,10 @@ class MyRepository<T : Any>(
             map[properties.name] = properties.get(obj)
         }
 
-        val newValues = map.keys.joinToString(", ") { "$it = ${if (map[it] is String) "'${map[it]}'" else map[it].toString()}" }  // Генерируем `SET col1 = ?, col2 = ?`
+        val newValues = map.keys.joinToString(", ") { "$it = ${if (map[it] is String) "'${map[it]}'" else map[it].toString()}" }
 
 
         val query = """update  $tableName  set $newValues where id = ${map["id"]}"""
-        println(query)
 
 
         connection.createStatement().use { statement ->
@@ -83,13 +84,13 @@ class MyRepository<T : Any>(
         return obj
     }
     inline fun <reified T : Any> delete(id: Long): T {
-        val user = read<T>(id)
+        val obj = read<T>(id)
         val query = """delete from $tableName  where id = $id"""
 
         connection.createStatement().use { statement ->
             statement.executeUpdate(query)
         }
-        return user
+        return obj
     }
 
 }
