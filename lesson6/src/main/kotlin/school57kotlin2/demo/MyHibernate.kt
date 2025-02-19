@@ -103,6 +103,7 @@ class MyRepository<T : Any>(
     }
 }
 
+
 //fun main() {
 //    val connection: Connection = TODO()
 //    val repository = MyRepository<...>(connection)
