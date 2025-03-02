@@ -3,7 +3,7 @@ spring:
     name: demo
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/my_db // сюда нужно вписать url для вашей базы
+    url: jdbc:postgresql://localhost:5432/my_db # сюда нужно вписать url для вашей базы
     username: admin
     password: admin
   jpa:
