@@ -7,6 +7,7 @@ import school57kotlin2.demo.client.BlackListClient
 import school57kotlin2.demo.controller.dto.TransferDto
 import school57kotlin2.demo.controller.dto.UserDto
 import school57kotlin2.demo.controller.dto.toEntity
+import school57kotlin2.demo.entity.toDto
 import school57kotlin2.demo.repository.UserRepository
 
 @Service
@@ -15,17 +16,18 @@ class UserService(
     val blackListClient: BlackListClient,
 ) {
 
-    fun addUser(user: UserDto) {
+    fun addUser(user: UserDto) : UserDto?{
         val blackListReason = blackListClient.searchInBlacklist(
             name = user.name,
             age = user.age
         )
 
         if (blackListReason.contains("Террорист")) {
-            return
+            return null
         }
 
-        userRepository.save(user.toEntity())
+        val savedUser = userRepository.save(user.toEntity()).toDto()
+        return savedUser
     }
 
     fun getUser(name: String) =
