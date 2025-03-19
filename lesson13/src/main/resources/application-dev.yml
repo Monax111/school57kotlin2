@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/cluster_b # сюда нужно вписать url для вашей базы
+    username: admin
+  jpa:
+    show-sql: true
+
+client:
+  http:
+    blacklist:
+      uri: http://localhost:8095/blacklist
+    sanctions:
+      uri: http://localhost:8095/sanctions
+      read-timeout-ms: 3000

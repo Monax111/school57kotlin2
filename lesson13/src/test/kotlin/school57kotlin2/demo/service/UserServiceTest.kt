@@ -5,11 +5,16 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.boot.test.context.SpringBootTest
 import school57kotlin2.demo.client.BlackListClient
 import school57kotlin2.demo.controller.dto.UserDto
 import school57kotlin2.demo.controller.dto.toEntity
 import school57kotlin2.demo.repository.UserRepository
 
+
+@DataJpaTest
+@SpringBootTest
 class UserServiceTest {
 
     private val blackListClient = mockk<BlackListClient>()
