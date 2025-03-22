@@ -38,7 +38,7 @@ class UserService(
     fun transferMoney(transferDto: TransferDto) {
 
         if (sanctionsClient.isSanctions(transferDto.to)) {
-            return
+            throw SanctionsUserException()
         }
 
         val fromUser = getUser(transferDto.from)
@@ -50,7 +50,6 @@ class UserService(
         if (fromUser.balance < transferDto.amount) {
             throw InsufficientFundsException(fromUser.name)
         }
-
         fromUser.balance -= transferDto.amount
         userRepository.save(fromUser)
     }
@@ -64,10 +63,5 @@ class InsufficientFundsException(name: String) :
 @ResponseStatus(HttpStatus.NOT_FOUND)
 class UserNotFoundException(name: String) : RuntimeException("User $name not found in DB")
 
-fun foo(a: Boolean, b: Boolean): Int {
-    if (a || b) {
-        return 1
-    } else {
-        return 2
-    }
-}
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+class SanctionsUserException   : RuntimeException("User has sanctions")

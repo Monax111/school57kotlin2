@@ -19,7 +19,7 @@ class UserServiceTest {
 
     private val blackListClient = mockk<BlackListClient>()
     private val userRepository = mockk<UserRepository>()
-    private val userService = UserService(userRepository, blackListClient)
+    private val userService = UserService(userRepository, blackListClient, mockk())
 
     @Test
     fun `когда добавляют пользователя, который отсуствует в списке террористов, он добавляется в базу`() {
@@ -55,14 +55,4 @@ class UserServiceTest {
     }
 
 
-
-    @Test
-    fun `a || b == 0`() {
-        foo(false, false) shouldBe 2
-    }
-
-    @Test
-    fun `a || b === 1`() {
-        foo(true, false) shouldBe 1
-    }
 }

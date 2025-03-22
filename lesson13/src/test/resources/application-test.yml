@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: admin
+    password: admin
+  jpa:
+    show-sql: true
+
+client:
+  http:
+    blacklist:
+      uri: none
+    sanctions:
+      uri: http://localhost:8095/sanctions
+      read-timeout-ms: 3000

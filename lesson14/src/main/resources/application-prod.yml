@@ -1,0 +1,3 @@
+my:
+  config:
+    timeout: 5

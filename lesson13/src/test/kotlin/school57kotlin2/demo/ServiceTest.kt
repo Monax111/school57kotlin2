@@ -1,22 +1,18 @@
 package school57kotlin2.demo
 
-import com.ninjasquad.springmockk.MockkBean
 import io.kotest.matchers.shouldNotBe
 import io.mockk.every
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import school57kotlin2.demo.client.BlackListClient
 import school57kotlin2.demo.controller.dto.UserDto
 import school57kotlin2.demo.repository.UserRepository
 import school57kotlin2.demo.service.UserService
 
-@SpringBootTest
-class ServiceTest {
+
+class ServiceTest : AbstractServiceTest() {
 
 
-    @MockkBean
-    lateinit var blackListClient: BlackListClient
 
     @Autowired
     lateinit var userService: UserService
