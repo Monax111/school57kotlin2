@@ -1,3 +1,4 @@
 my:
   config:
-    timeout: 30
+    timeout: 25
+    url: четотам
