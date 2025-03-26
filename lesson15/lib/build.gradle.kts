@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "1.9.25"
     jacoco
+    `maven-publish`
 }
 
 repositories {
@@ -41,6 +42,18 @@ tasks{
     jacocoTestReport{
         reports{
             html.required = true
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "org.gradle.sample"
+            artifactId = "library"
+            version = "1.1"
+
+            from(components["java"])
         }
     }
 }

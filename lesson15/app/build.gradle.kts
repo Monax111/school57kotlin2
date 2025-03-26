@@ -9,6 +9,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -21,6 +22,7 @@ dependencies {
     implementation("org.reflections:reflections:+")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("com.h2database:h2")
+    implementation(project(":lib"))
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation(kotlin("test"))
