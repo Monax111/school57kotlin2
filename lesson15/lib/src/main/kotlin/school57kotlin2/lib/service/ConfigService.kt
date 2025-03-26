@@ -1,9 +1,12 @@
 package school57kotlin2.lib.service
 
-class ConfigService {
+class ConfigService(
+    val configComponent: ConfigComponent
+) {
 
     fun bar() {
-        println("123")
+        // Что-то сложное
+        println(configComponent.getValue())
     }
 
 }

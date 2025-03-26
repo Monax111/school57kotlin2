@@ -18,6 +18,7 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-context:4.2.1")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.reflections:reflections:+")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("com.h2database:h2")
 
