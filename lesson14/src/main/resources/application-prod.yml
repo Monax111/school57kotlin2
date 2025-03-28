@@ -1,4 +1,17 @@
 my:
   config:
     timeout: 5
-    url: tyuio
+    url: https://www.google.com
+spring:
+  application:
+    name: ClockApplication
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://production.host:5432/postgres
+    username: service_user_application
+    password: service_user_password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+

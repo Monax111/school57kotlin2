@@ -1,4 +1,17 @@
 my:
   config:
     timeout: 4
-    url: четотам
+    url: https://www.google.com
+spring:
+  application:
+    name: ClockApplicationDemo
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: myuser
+    password: mypassword
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
